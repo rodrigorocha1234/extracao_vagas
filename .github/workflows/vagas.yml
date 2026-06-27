@@ -1,0 +1,34 @@
+name: Coletar Vagas
+
+on:
+  schedule:
+    # Todos os dias às 19:00 UTC
+    - cron: '0 19 * * *'
+
+  workflow_dispatch:
+
+jobs:
+  scraper:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar Chrome
+        uses: browser-actions/setup-chrome@v1
+
+      - name: Instalar dependências
+        run: |
+          pip install -r requirements.txt
+
+      - name: Executar extrator vagas
+        run: |
+          python scraper.py
