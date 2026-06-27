@@ -11,14 +11,16 @@ class TelegramMensageiro:
         self.__chat_id = Config.CHAT_ID_TELEGRAM
 
     def formatar_texto(self, mensagem: tuple[str, str, str]) -> str:
-        mensagem_formatada = f"""
-        🚀 <b>Vaga encontrada do dia {datetime.now().strftime("%d/%m/%Y")} na empresa {mensagem[2]}</b>
+        return f"""
+        🚀 <b>Vaga encontrada</b>
 
-        <b>{mensagem[0]}</b>
+        📅 <b>Data:</b> {datetime.now().strftime("%d/%m/%Y")}
+        🏢 <b>Empresa:</b> {mensagem[2]}
 
-        🔗 {mensagem[1]}
-        """
-        return mensagem_formatada
+        💼 <b>{mensagem[0]}</b>
+
+        🔗 <b>{mensagem[1]}</b>
+        """.strip()
 
     def enviar_mensagem(self, mensagem: str) -> None:
         self.__bot.send_message(chat_id=self.__chat_id, text=mensagem, parse_mode="HTML", )
