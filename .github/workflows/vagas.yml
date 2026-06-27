@@ -11,6 +11,9 @@ jobs:
   scraper:
 
     runs-on: ubuntu-latest
+    env:
+      TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
+      CHAT_ID_TELEGRAM: ${{ secrets.CHAT_ID_TELEGRAM }}
 
     steps:
 
