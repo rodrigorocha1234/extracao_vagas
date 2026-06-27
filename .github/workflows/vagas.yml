@@ -2,8 +2,8 @@ name: Coletar Vagas
 
 on:
   schedule:
-    # Todos os dias às 19:00 UTC
-    - cron: '0 19 * * *'
+    # Segunda a sexta às 19:00 UTC
+    - cron: '0 19 * * 1-5'
 
   workflow_dispatch:
 
