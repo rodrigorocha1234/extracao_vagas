@@ -12,7 +12,7 @@ class TelegramMensageiro:
 
     def formatar_texto(self, mensagem: tuple[str, str, str]) -> str:
         mensagem_formatada = f"""
-        🚀 <b>Vaga encontrada do dia {datetime.now().strftime("%d/%m/%Y")}</b>
+        🚀 <b>Vaga encontrada do dia {datetime.now().strftime("%d/%m/%Y")} na empresa {mensagem[2]}</b>
 
         <b>{mensagem[0]}</b>
 
