@@ -31,4 +31,4 @@ jobs:
 
       - name: Executar extrator vagas
         run: |
-          python scraper.py
+          python main_extracao.py
