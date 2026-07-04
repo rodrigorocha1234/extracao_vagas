@@ -1,35 +1,33 @@
-from src.extracao.extracao_inhire.extracao_base import ExtracaoInhire
+from src.extracao.extracao_ccm.extracao_ccm import ExtracaoCcm
+from src.extracao.extracao_inhire.extracao_inhire import ExtracaoInrihe
 from src.extracao.iextracao import IExtracao
 from src.mensageiro.imensageiro import IMensageiro
 from src.mensageiro.telegram_mensageiro.telegram_mensageiro import TelegramMensageiro
 
 
 class MainExtracao:
-    def __init__(self, extracao_inhire: IExtracao, servico_mensageiro: IMensageiro):
-        self.__url_inhire = ['https://goflow.inhire.app/azcorp/vagas']
-        self.__extracao_inhire = extracao_inhire
+    def __init__(self, extracao_vagas: IExtracao, servico_mensageiro: IMensageiro, url_extracao: str):
+        self.__url_extracao = url_extracao
+        self.__extracao_vagas = extracao_vagas
         self.__servico_mensageiro = servico_mensageiro
 
-    def rodar_servico_inrire(self):
-        for site in self.__url_inhire:
-            self.__extracao_inhire.obter_dados(url=site)
-            vagas = self.__extracao_inhire.obter_dados_vagas()
-            if vagas:
-                for vaga in vagas:
-                    texto_formatado = self.__servico_mensageiro.formatar_texto(vaga)
-                    self.__servico_mensageiro.enviar_mensagem(mensagem=texto_formatado)
+    def rodar_servico_extracao(self):
 
-        self.__extracao_inhire.fechar_conexao()
+        self.__extracao_vagas.obter_dados(url=self.__url_extracao)
+        vagas = self.__extracao_vagas.obter_dados_vagas()
+        if vagas:
+            for vaga in vagas:
+                texto_formatado = self.__servico_mensageiro.formatar_texto(vaga)
+                self.__servico_mensageiro.enviar_mensagem(mensagem=texto_formatado)
+
+        self.__extracao_vagas.fechar_conexao()
 
 
 if __name__ == "__main__":
-    extracao_inhire = ExtracaoInhire()
+    extracao_inhire = ExtracaoInrihe()
+    servicos_extracao = [(ExtracaoInrihe(), "https://goflow.inhire.app/azcorp/vagas"),
+        (ExtracaoCcm(), "https://recrutamento.ccmtecnologia.com.br/jobs/Careers")]
     servico_telegram = TelegramMensageiro()
-    me = MainExtracao(extracao_inhire, servico_telegram)
-    me.rodar_servico_inrire()
-
-
-
-
-
-
+    for site in servicos_extracao:
+        me = MainExtracao(site[0], servico_telegram, site[1])
+        me.rodar_servico_extracao()
