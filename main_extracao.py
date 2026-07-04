@@ -24,9 +24,11 @@ class MainExtracao:
 
 
 if __name__ == "__main__":
-    extracao_inhire = ExtracaoInrihe()
-    servicos_extracao = [(ExtracaoInrihe(), "https://goflow.inhire.app/azcorp/vagas"),
-        (ExtracaoCcm(), "https://recrutamento.ccmtecnologia.com.br/jobs/Careers")]
+    servicos_extracao = [
+        (ExtracaoInrihe(), "https://goflow.inhire.app/azcorp/vagas"),
+        (ExtracaoInrihe(), "https://pedraagroindustrial.inhire.app/vagas"),
+        (ExtracaoCcm(), "https://recrutamento.ccmtecnologia.com.br/jobs/Careers")
+    ]
     servico_telegram = TelegramMensageiro()
     for site in servicos_extracao:
         me = MainExtracao(site[0], servico_telegram, site[1])

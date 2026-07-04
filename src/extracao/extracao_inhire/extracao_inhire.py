@@ -17,8 +17,11 @@ class ExtracaoInrihe(ExtracaoBase):
 
     def obter_dados_vagas(self) -> list[tuple[str, str, str]]:
         lista_vagas = []
+
         WebDriverWait(self._driver, 40).until(
             EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'a[data-component-name="job-position-link"]')))
+        self.scroll_ate_o_final()
+
         vagas = self._driver.find_elements(By.CSS_SELECTOR, 'a[data-component-name="job-position-link"]')
         for vaga in vagas:
             try:
