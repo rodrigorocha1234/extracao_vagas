@@ -25,7 +25,7 @@ class MainExtracao:
 
 if __name__ == "__main__":
     servicos_extracao = [
-        (ExtracaoInrihe(), "https://goflow.inhire.app/azcorp/vagas"),
+
         (ExtracaoInrihe(), "https://pedraagroindustrial.inhire.app/vagas"),
         (ExtracaoCcm(), "https://recrutamento.ccmtecnologia.com.br/jobs/Careers")
     ]
