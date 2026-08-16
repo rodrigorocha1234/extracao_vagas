@@ -14,13 +14,15 @@ class ExtracaoBase(ABC):
 
     def __init__(self) -> None:
         self.__options = Options()
-        self.__options.add_argument("--headless=new")
+        # self.__options.add_argument("--headless=new")
         self.__servico = Service(ChromeDriverManager().install())
+
         self._driver = webdriver.Chrome(service=self.__servico, options=self.__options)
 
 
     def obter_dados(self, url: str):
         self._driver.get(url)
+
 
     def scroll_ate_o_final(self, pausa: float = 2.0):
         """

@@ -1,3 +1,4 @@
+from src.extracao.extracao_azcorp.extracao_azcorp import ExtracaoAzcorp
 from src.extracao.extracao_ccm.extracao_ccm import ExtracaoCcm
 from src.extracao.extracao_inhire.extracao_inhire import ExtracaoInrihe
 from src.extracao.iextracao import IExtracao
@@ -25,9 +26,9 @@ class MainExtracao:
 
 if __name__ == "__main__":
     servicos_extracao = [
-
-        (ExtracaoInrihe(), "https://pedraagroindustrial.inhire.app/vagas"),
-        (ExtracaoCcm(), "https://recrutamento.ccmtecnologia.com.br/jobs/Careers")
+        # (ExtracaoInrihe(), "https://pedraagroindustrial.inhire.app/vagas"),
+        # (ExtracaoCcm(), "https://recrutamento.ccmtecnologia.com.br/jobs/Careers"),
+        (ExtracaoAzcorp(),'https://azone.aalves.org/contratacao/cadastro' )
     ]
     servico_telegram = TelegramMensageiro()
     for site in servicos_extracao:

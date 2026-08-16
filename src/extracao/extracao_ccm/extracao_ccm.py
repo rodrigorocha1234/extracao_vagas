@@ -13,7 +13,12 @@ class ExtracaoCcm(ExtracaoBase):
         titulos_vagas = self._driver.find_elements(By.CLASS_NAME, 'cw-1-title')
         links = self._driver.find_elements(By.CLASS_NAME, 'cw-1-title')
 
+
         for titulo, link in zip(titulos_vagas, links):
-            lista_dados_vagas.append((titulo.text, link.get_attribute('href'), "CCM TECNOLOGIA"))
+            href = link.get_attribute("href")
+
+            if href is None:
+                continue
+            lista_dados_vagas.append((titulo.text, href, "CCM TECNOLOGIA"))
 
         return lista_dados_vagas
