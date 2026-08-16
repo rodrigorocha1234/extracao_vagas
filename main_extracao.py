@@ -25,9 +25,8 @@ class MainExtracao:
 
 
 if __name__ == "__main__":
-    servicos_extracao = [
-        # (ExtracaoInrihe(), "https://pedraagroindustrial.inhire.app/vagas"),
-        # (ExtracaoCcm(), "https://recrutamento.ccmtecnologia.com.br/jobs/Careers"),
+    servicos_extracao = [(ExtracaoInrihe(), "https://pedraagroindustrial.inhire.app/vagas"),
+        (ExtracaoCcm(), "https://recrutamento.ccmtecnologia.com.br/jobs/Careers"),
         (ExtracaoAzcorp(),'https://azone.aalves.org/contratacao/cadastro' )
     ]
     servico_telegram = TelegramMensageiro()
