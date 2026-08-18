@@ -21,16 +21,19 @@ class ExtracaoInrihe(ExtracaoBase):
         WebDriverWait(self._driver, 100).until(
             EC.presence_of_all_elements_located((By.CSS_SELECTOR, 'a[data-component-name="job-position-link"]')))
         self.scroll_ate_o_final()
+        titulo_vaga = ''
 
         vagas = self._driver.find_elements(By.CSS_SELECTOR, 'a[data-component-name="job-position-link"]')
         for vaga in vagas:
             try:
                 titulo = vaga.find_element(By.CSS_SELECTOR, 'div[data-sentry-element="JobPositionName"]').text
-                link = vaga.get_attribute("href")
-                assert link is not None
-                lista_vagas.append((titulo, link, self._driver.title))
+
+                titulo_vaga += '- ' +  titulo + '\n'
+
+
             except Exception as e:
                 print(f"Erro ao processar vaga: {e}")
                 continue
+        lista_vagas.append((titulo_vaga, f'{self._driver.current_url}', self._driver.title))
         return lista_vagas
 
