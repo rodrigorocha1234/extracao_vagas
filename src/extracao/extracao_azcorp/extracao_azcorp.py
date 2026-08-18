@@ -17,8 +17,8 @@ class ExtracaoAzcorp(ExtracaoBase):
         vagas = self._driver.find_elements(By.XPATH, '/html/body/div[2]/div/div[2]/div/form/div[2]/select')
 
         for vaga in vagas:
-            nome_vaga = " \n -".join(
-                linha.strip()
+            nome_vaga = " \n - ".join(
+                ' - ' + linha.strip()
                 for linha in vaga.text.splitlines()
                 if linha.strip()
             ) + "\n"
