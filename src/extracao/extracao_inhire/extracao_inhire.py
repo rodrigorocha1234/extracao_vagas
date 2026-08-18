@@ -27,8 +27,7 @@ class ExtracaoInrihe(ExtracaoBase):
         for vaga in vagas:
             try:
                 titulo = vaga.find_element(By.CSS_SELECTOR, 'div[data-sentry-element="JobPositionName"]').text
-                print(titulo)
-                print(titulo.split('-')[-1].strip())
+
                 if titulo.split('-')[-1].strip() == "USINA DA PEDRA":
                     titulo_vaga += '- ' +  titulo + '\n' + '\n'
 
