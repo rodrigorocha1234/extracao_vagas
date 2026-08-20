@@ -12,7 +12,7 @@ class ExtracaoAzcorp(ExtracaoBase):
 
     def obter_dados_vagas(self) -> list[tuple[str, str, str]]:
         lista_vagas = []
-        sleep(80)
+        sleep(120)
 
         vagas = self._driver.find_elements(By.XPATH, '/html/body/div[2]/div/div[2]/div/form/div[2]/select')
 
