@@ -14,10 +14,11 @@ class ExtracaoBase(ABC):
 
     def __init__(self) -> None:
         self.__options = Options()
-        self.__options.add_argument("--headless=new")
+        # self.__options.add_argument("--headless=new")
         self.__servico = Service(ChromeDriverManager().install())
 
-        self._driver = webdriver.Chrome(service=self.__servico, options=self.__options)
+        self._driver = webdriver.Chrome(
+            service=self.__servico, options=self.__options)
 
     def obter_dados(self, url: str):
         self._driver.get(url)
@@ -27,18 +28,18 @@ class ExtracaoBase(ABC):
         Realiza scroll até que a altura da página não aumente mais.
         """
         altura_anterior = self._driver.execute_script(
-            "return document.body.scrollHeight"
+            "return Math.max(document.body ? document.body.scrollHeight : 0, document.documentElement ? document.documentElement.scrollHeight : 0);"
         )
 
         while True:
             self._driver.execute_script(
-                "window.scrollTo(0, document.body.scrollHeight);"
+                "window.scrollTo(0, Math.max(document.body ? document.body.scrollHeight : 0, document.documentElement ? document.documentElement.scrollHeight : 0));"
             )
 
             sleep(pausa)
 
             nova_altura = self._driver.execute_script(
-                "return document.body.scrollHeight"
+                "return Math.max(document.body ? document.body.scrollHeight : 0, document.documentElement ? document.documentElement.scrollHeight : 0);"
             )
 
             if nova_altura == altura_anterior:

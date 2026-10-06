@@ -27,7 +27,7 @@ class MainExtracao:
 if __name__ == "__main__":
     servicos_extracao = [(ExtracaoInrihe(), "https://pedraagroindustrial.inhire.app/vagas"),
         (ExtracaoCcm(), "https://recrutamento.ccmtecnologia.com.br/jobs/Careers"),
-        (ExtracaoAzcorp(),'https://azone.aalves.org/contratacao/cadastro' )
+        (ExtracaoAzcorp(), 'https://azcorp.tech/talentos/')
     ]
     servico_telegram = TelegramMensageiro()
     for site in servicos_extracao:
