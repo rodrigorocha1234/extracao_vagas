@@ -1,5 +1,5 @@
 from typing import TypeVar
-
+from time import sleep
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.wait import WebDriverWait
@@ -16,6 +16,7 @@ class ExtracaoInhire(ExtracaoBase):
 
     def obter_dados_vagas(self) -> list[tuple[str, str, str]]:
         lista_vagas: list[tuple[str, str, str]] = []
+        sleep(200)
 
         try:
             WebDriverWait(self._driver, 20).until(
