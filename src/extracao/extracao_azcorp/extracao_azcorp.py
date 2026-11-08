@@ -1,5 +1,5 @@
 from selenium.webdriver.common.by import By
-
+from time import sleep
 from src.extracao.extracao_base import ExtracaoBase
 
 
@@ -9,6 +9,7 @@ class ExtracaoAzcorp(ExtracaoBase):
         super().__init__()
 
     def obter_dados_vagas(self) -> list[tuple[str, str, str]]:
+        sleep(120)
         lista_vagas: list[tuple[str, str, str]] = []
 
         self.scroll_ate_o_final(pausa=1.0)
